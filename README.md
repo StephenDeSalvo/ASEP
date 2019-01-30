@@ -17,6 +17,10 @@ The second demo reads in the incidence matrix from a file in input/graph.txt
 ./ASEP_demo_graph_from_file_3_particles_10_iterations
 ```
 
+## How to make more demos
+
+This depends on the library desalvo_standard_library, which is a library I started many years ago and just recently updated for this repository.  You need to make sure to clone that repository as well in a sibling folder.  I.e., I have ASEP and desalvo_standard_library as two folders within the same directory.  Then you should be able to compile and run the file asep_main.cpp below in order to create more demos.
+
 More demos can be made by editing asep_main.cpp and invoking
 ```bash
 g++ -std=c++11 asep_main.cpp  -o my_demo.exe
