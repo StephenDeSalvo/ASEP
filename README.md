@@ -3,18 +3,6 @@
 
 It is avialable under the GNU GPLv3 license.  Questions may be sent to the author at stephendesalvo@gmail.com.
 
-## How to Build
-
-```bash
-make all
-```
-
-## How to Test
-
-```bash
-make test
-```
-
 ## How to Execute
 
 There are two demos.  
