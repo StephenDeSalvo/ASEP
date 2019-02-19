@@ -181,6 +181,12 @@ namespace ASEP {
             }
         }
 
+        std::vector<const Particle*> get_positions() const {
+            std::vector<const Particle*> const_particles;
+            for (const auto& x : particles)
+                const_particles.push_back(x);
+            return const_particles;
+        }
 
     private:
         Universe* universe;
