@@ -15,8 +15,8 @@
 #include <iostream>
 #include <vector>
 
-#include "../desalvo_standard_library/timer.h"
-#include "../desalvo_standard_library/std_cout.h"
+#include "../../desalvo_standard_library/timer.h"
+#include "../../desalvo_standard_library/std_cout.h"
 
 namespace dsl = desalvo_standard_library;
 

@@ -16,12 +16,13 @@
 #include <vector>
 #include <random>
 //#include "graph.h"
-#include "../desalvo_standard_library/timer.h"
-#include "../desalvo_standard_library/std_cout.h"
+#include "../../desalvo_standard_library/timer.h"
+#include "../../desalvo_standard_library/std_cout.h"
 
 namespace desalvo_standard_library {
 
 
+    
     /** @class ASEP
         @brief Creates an object representing a run of the classical ASEP on a graph.
 

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
-#include "../desalvo_standard_library/polymorphic_graph.h"
-#include "../desalvo_standard_library/timer.h"
+#include "../../desalvo_standard_library/polymorphic_graph.h"
+#include "../../desalvo_standard_library/timer.h"
 #include "ASEP.h"
 #include "particle.h"
 
