@@ -1,32 +1,47 @@
-# ASEP
+ASEP — moved
+============
 
+**This repository is retired.**  The asymmetric exclusion process now lives in
+the DeSalvo Standard Library, as `asep.h`:
 
-It is avialable under the GNU GPLv3 license.  Questions may be sent to the author at stephendesalvo@gmail.com.
+> **https://github.com/StephenDeSalvo/desalvo_standard_library**
 
-## How to Execute
+This repository always depended on that one, and half of it had already moved:
+the `Graph` and `Particle` the process runs on went across in 2020 as
+`polymorphic/graph.h` and `polymorphic/particle.h`.  `ASEP.h` was the piece
+left behind, which made this repo a header that could not stand on its own and
+a library that was missing its process.  Now there is one place.
 
-There are two demos.  
+What changed in the move — the demos here need all of it:
 
-The first one is a complete graph on 100 nodes (where actually nodes 0 and 99 are the source and sink and the 98 remaining nodes form a clique.)
-```bash
-./ASEP_demo_100_nodes_complete_graph_20_particles_10000_iterations
+```cpp
+#include "asep.h"                      // was "ASEP.h"
+#include "polymorphic/graph.h"         // was "../../desalvo_standard_library/polymorphic_graph.h"
+#include "polymorphic/particle.h"      // was "particle.h"
+
+dsl::polymorphic::Graph                // was dsl::PolymorphicGraph
+dsl::polymorphic::Node                 // was dsl::Node
+dsl::polymorphic::Particle<...>        // was dsl::Particle<...>
+dsl::polymorphic::random_weighted_complete_directed_graph_with_source_sink(...)
 ```
 
-The second demo reads in the incidence matrix from a file in input/graph.txt
-```bash
-./ASEP_demo_graph_from_file_3_particles_10_iterations
-```
+`ASEP::ASEP<...>` is spelled the same — an alias keeps the top-level `ASEP::`
+namespace working — and the constructor and `run` / `print` / `get_positions`
+are unchanged.  No sibling checkout is needed any more; one clone has
+everything.
 
-## How to make more demos
+Three bugs were fixed on the way, each of which stopped the process running on
+a current compiler:
 
-This depends on the library desalvo_standard_library, which is a library I started many years ago and just recently updated for this repository.  You need to make sure to clone that repository as well in a sibling folder.  I.e., I have ASEP and desalvo_standard_library as two folders within the same directory.  Then you should be able to compile and run the file asep_main.cpp below in order to create more demos.
+- `ASEP.h` used `std::function`, `std::sort` and `std::default_random_engine`
+  without including `<functional>`, `<algorithm>` or `<random>`.
+- `particle.h` declared `std::discrete_distribution<double>`; that
+  distribution returns an index, so its argument must be integral.  The
+  casualty was `update()`, the one function that moves a particle.
+- `file.h` used an `operator>>` it did not include, so whether it compiled
+  depended on include order.
 
-More demos can be made by editing asep_main.cpp and invoking
-```bash
-g++ -std=c++11 asep_main.cpp  -o my_demo.exe
-./my_demo
-```
+There are tests now, in `unit_tests/asep_tests.cpp`, which run the process
+rather than just instantiating it — none of the three was visible otherwise.
 
-## Documentation
-
-All classes, namespaces, and functions are documented using Doxygen.
+This repository stays readable for the sake of any link that points at it.
